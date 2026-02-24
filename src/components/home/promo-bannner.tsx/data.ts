@@ -12,7 +12,8 @@ export const banners = [
         bgColor: 'bg-[#FFF3EC]',
         textColor: 'text-heading',
         buttonColor: 'bg-primary',
-        image: img1
+        image: img1,
+        price: '$12.99'
     },
     {
         title: 'Healthy Food',
@@ -22,7 +23,8 @@ export const banners = [
         bgColor: 'bg-[#E3F2EE]',
         textColor: 'text-heading',
         buttonColor: 'bg-secondary',
-        image: img2
+        image: img2,
+        price: '$12.99'
     },
     {
         title: 'Fast Delivery',
@@ -32,6 +34,18 @@ export const banners = [
         bgColor: 'bg-[#F0E8D5]',
         textColor: 'text-heading',
         buttonColor: 'bg-accent',
-        image: img3
+        image: img3,
+        price: '$12.99'
+    },
+    {
+        title: 'Fast Delivery',
+        subtitle: 'Free Shipping',
+        description: 'Free shipping on all orders over $99',
+        buttonText: 'Shop Now',
+        bgColor: 'bg-[#F0E8D5]',
+        textColor: 'text-heading',
+        buttonColor: 'bg-accent',
+        image: img4,
+        price: '$12.99'
     }
 ];
