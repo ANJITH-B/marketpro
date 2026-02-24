@@ -17,7 +17,7 @@ import { slides } from './data';
 
 const HeroCarousel = () => {
     return (
-        <section className="container relative group overflow-hidden mt-5 mx-auto rounded-2xl">
+        <section className="container relative group overflow-hidden mt-5 px-4 mx-auto ">
             <Swiper
                 modules={[Navigation, Pagination, Autoplay, EffectFade]}
                 spaceBetween={0}
@@ -38,7 +38,7 @@ const HeroCarousel = () => {
                     nextEl: '.hero-next',
                     prevEl: '.hero-prev',
                 }}
-                className="w-full h-[300px] md:h-[300px] lg:h-[350px]"
+                className="w-full h-[300px] md:h-[300px] lg:h-[350px] rounded-2xl"
             >
                 {slides.map((slide, index) => (
                     <SwiperSlide key={index}>
@@ -57,10 +57,10 @@ const HeroCarousel = () => {
                 ))}
             </Swiper>
 
-            <button className="hero-prev absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md text-heading hover:bg-primary hover:text-white transition-all opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0">
+            <button className="hero-prev absolute left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md text-heading hover:bg-primary hover:text-white transition-all opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0">
                 <ChevronLeft size={24} />
             </button>
-            <button className="hero-next absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md text-heading hover:bg-primary hover:text-white transition-all opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0">
+            <button className="hero-next absolute right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md text-heading hover:bg-primary hover:text-white transition-all opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0">
                 <ChevronRight size={24} />
             </button>
 

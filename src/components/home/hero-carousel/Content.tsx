@@ -14,7 +14,7 @@ export const Content = ({ slide }: ContentProps) => {
     return (
         <div className="px-4 md:px-20 z-10 ">
             <div className="max-w-2xl">
-                <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary font-bold text-sm mb-4">
+                <span className="inline-block text-secondary font-bold text-sm mb-4">
                     {slide.subtitle}
                 </span>
                 <h1 className="text-4xl md:text-4xl font-semibold text-heading mb-6 leading-tight">
