@@ -1,84 +1,96 @@
 'use client';
 
-import { Star, ShoppingCart, Heart, Eye } from 'lucide-react';
+import { Star, ShoppingCart, Heart, Eye, Store } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Image, { StaticImageData } from 'next/image';
+import { Product } from '@/utils/types';
 
 interface ProductCardProps {
-    product: {
-        id: number;
-        title: string;
-        price: number;
-        oldPrice?: number;
-        rating: number;
-        image: string;
-        tag?: string;
-        sold?: number;
-        total?: number;
-    }
+    product: Product
+    showProgress?: boolean
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, showProgress = false }: ProductCardProps) => {
     return (
-        <div className="bg-white rounded-2xl border border-gray-100 p-4 transition-all duration-300 hover:shadow-xl hover:border-primary/20 group relative">
-            {/* Badge/Tag */}
-            {product.tag && (
-                <span className="absolute top-4 left-4 z-10 bg-secondary text-white text-[10px] font-bold px-2 py-1 rounded">
-                    {product.tag}
+        <div className="bg-white rounded-2xl border border-gray-300  p-4 transition-all duration-300   hover:border-primary/60 group relative">
+
+            {showProgress ? (
+                <span className="absolute top-4 right-4 z-10 bg-primary/10 text-primary text-xs px-2.5 py-1 pb-1.5 rounded-full border border-primary/20">
+                    <button className="text-xs font-semibold flex items-center gap-1.5 hover:text-primary transition-all transform active:scale-90">
+                        Add <ShoppingCart size={14} />
+                    </button>
+                </span>) : (
+                <span className="absolute top-3 left-3 z-10 bg-amber-300 text-white text-xs px-2.5 py-1 pb-1.5 rounded-lg rounded-tr-none rounded-bl-none border-primary/20">
+                    <button className="text-xs font-semibold flex items-center gap-1.5 hover:text-primary transition-all transform active:scale-90"> New
+                    </button>
                 </span>
             )}
 
-            {/* Action Icons (Hover) */}
-            <div className="absolute top-4 right-4 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-300">
-                <button className="w-9 h-9 bg-white shadow-md rounded-full flex items-center justify-center text-heading hover:bg-primary hover:text-white transition-colors">
-                    <Heart size={18} />
-                </button>
-                <button className="w-9 h-9 bg-white shadow-md rounded-full flex items-center justify-center text-heading hover:bg-primary hover:text-white transition-colors">
-                    <Eye size={18} />
-                </button>
-            </div>
+
+            {!showProgress && (
+                <div className="absolute top-4 right-4 z-10 flex flex-col gap-1 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                    <button className="w-9 h-9 bg-white shadow-md rounded-full flex items-center justify-center text-heading hover:bg-primary hover:text-white transition-colors">
+                        <Heart size={18} />
+                    </button>
+                    <button className="w-9 h-9 bg-white shadow-md rounded-full flex items-center justify-center text-heading hover:bg-primary hover:text-white transition-colors">
+                        <Eye size={18} />
+                    </button>
+                </div>
+            )}
 
             {/* Product Image */}
-            <div className="relative aspect-square mb-4 overflow-hidden rounded-xl bg-gray-50 flex items-center justify-center text-4xl">
+            <div className="relative aspect-square mb-4 overflow-hidden rounded-xl flex items-center justify-center text-4xl">
                 {/* Mock Image */}
-                <div className="group-hover:scale-110 transition-transform duration-500">
-                    {product.image}
+                <div className="w-full h-full p-5">
+                    <Image src={product.image} alt={product.title} width={200} height={200} className='w-full h-full object-contain' />
                 </div>
             </div>
 
             {/* Content */}
-            <div className="space-y-2">
-                <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                        <Star
-                            key={i}
-                            size={14}
-                            className={i < product.rating ? "fill-accent text-accent" : "text-gray-200"}
-                        />
-                    ))}
-                    <span className="text-[12px] text-body">({product.rating}.0)</span>
-                </div>
-
-                <Link href="#" className="block">
+            {!showProgress && (
+                <>
                     <h3 className="text-sm font-bold text-heading hover:text-primary transition-colors line-clamp-2 min-h-[40px]">
                         {product.title}
                     </h3>
-                </Link>
-
-                <div className="flex items-center justify-between mt-4">
+                    <p className='text-xs text-body flex items-center gap-2 pt-1'>
+                        <Store size={16} strokeWidth={1.5} className='text-primary' />
+                        By Lucky Supermarket</p>
+                </>
+            )}
+            <div className="space-y-2">
+                <div className="flex flex-col justify-between mt-2">
                     <div className="flex items-baseline gap-2">
                         <span className="text-lg font-bold text-primary">${product.price}</span>
                         {product.oldPrice && (
                             <span className="text-sm text-body line-through">${product.oldPrice}</span>
                         )}
                     </div>
-                    <button className="bg-secondary/10 text-secondary p-2 rounded-lg hover:bg-secondary hover:text-white transition-all transform active:scale-90">
-                        <ShoppingCart size={20} />
-                    </button>
+
+                    <div className="flex items-center gap-1">
+                        {[...Array(5)].map((_, i) => (
+                            <Star
+                                key={i}
+                                size={14}
+                                className={i < product.rating ? "fill-accent text-accent" : "text-gray-200"}
+                            />
+                        ))}
+                        <span className="text-[12px] text-body">({product.rating}.0)</span>
+                    </div>
                 </div>
 
-                {/* Sold Progress Bar (Optional) */}
-                {product.sold !== undefined && product.total !== undefined && (
+                {showProgress && <h3 className="text-sm font-bold text-heading hover:text-primary transition-colors line-clamp-2 min-h-[40px]">
+                    {product.title}
+                </h3>}
+
+
+
+                {!showProgress && <button className=" font-semibold flex items-center justify-center gap-3 hover:bg-primary hover:text-white transition-all transform active:scale-90
+                    w-full bg-primary/10 text-primary text-xs px-2.5 py-2  rounded-full border border-primary/20">
+                    <span className='pb-0.5'>Add To Cart</span> <ShoppingCart size={12} />
+                </button>}
+
+                {showProgress && product.sold !== undefined && product.total !== undefined && (
                     <div className="mt-4 space-y-2">
                         <div className="flex justify-between text-[11px] font-bold text-heading">
                             <span>Sold: {product.sold}/{product.total}</span>

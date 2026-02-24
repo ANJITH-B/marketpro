@@ -1,5 +1,7 @@
 import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
+import logo from '../../../public/logo.png';
 
 const Footer = () => {
     const footerLinks = [
@@ -39,20 +41,13 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="bg-white pt-16 pb-8 border-t border-gray-100">
+        <footer className="bg-white pt-16 pb-8 border-t border-gray-300">
             <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+                <div className="flex flex-col lg:flex-row gap-8 mb-5 md:mb-12 justify-between">
                     {/* Brand Info */}
                     <div className="lg:col-span-2">
-                        <Link href="/" className="flex items-center gap-2 mb-6">
-                            <div className="bg-secondary p-1 rounded-lg">
-                                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
-                                    <span className="text-secondary font-bold text-xl">M</span>
-                                </div>
-                            </div>
-                            <span className="text-2xl font-bold text-heading">Marketpro</span>
-                        </Link>
-                        <p className="text-body text-sm mb-6 leading-relaxed max-w-sm">
+                        <Image src={logo} alt="Logo" width={150} height={150} />
+                        <p className="text-body text-sm my-6 leading-relaxed max-w-sm">
                             We are a dynamic team of full stack developers and designers crafting premium web experiences. Marketpro is your one-stop shop for all your grocery needs.
                         </p>
                         <div className="space-y-3">
@@ -72,40 +67,42 @@ const Footer = () => {
                     </div>
 
                     {/* Links */}
-                    {footerLinks.map((section) => (
-                        <div key={section.title}>
-                            <h4 className="text-lg font-bold text-heading mb-6">{section.title}</h4>
-                            <ul className="space-y-3">
-                                {section.links.map((link) => (
-                                    <li key={link.name}>
-                                        <Link href={link.href} className="text-sm text-body hover:text-primary transition-colors">
-                                            {link.name}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
+                    <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-8 md:gap-20">
+                        {footerLinks.map((section) => (
+
+                            <div key={section.title} >
+                                <h4 className="text-lg font-bold text-heading mb-2 md:mb-6">{section.title}</h4>
+                                <ul className="space-y-0.5 md:space-y-3">
+                                    {section.links.map((link) => (
+                                        <li key={link.name}>
+                                            <Link href={link.href} className="text-xs md:text-sm text-body hover:text-primary transition-colors">
+                                                {link.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
-                <div className="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div className="pt-4 md:pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-sm text-body text-center md:text-left">
                         © 2024 <span className="text-primary font-bold">Marketpro</span>. All rights reserved.
                     </p>
 
-                    <div className="flex items-center gap-4">
+                    <div className="flex md:flex-col flex-row items-center gap-4">
                         {/* App Store Links mockup */}
+                        <p className="text-[10px] md:text-xs leading-tight opacity-70">Download on the</p>
                         <div className="flex gap-2">
                             <div className="bg-heading rounded-lg px-3 py-1 flex items-center gap-2 cursor-pointer hover:bg-heading/90 transition-colors">
                                 <div className="text-white">
-                                    <p className="text-[10px] leading-tight opacity-70">Download on the</p>
-                                    <p className="text-xs font-bold leading-tight">App Store</p>
+                                    <p className="text-xs font-semibold leading-tight pb-0.5">App Store</p>
                                 </div>
                             </div>
                             <div className="bg-heading rounded-lg px-3 py-1 flex items-center gap-2 cursor-pointer hover:bg-heading/90 transition-colors">
                                 <div className="text-white">
-                                    <p className="text-[10px] leading-tight opacity-70">Get it on</p>
-                                    <p className="text-xs font-bold leading-tight">Google Play</p>
+                                    <p className="text-xs font-semibold leading-tight pb-0.5">Google Play</p>
                                 </div>
                             </div>
                         </div>
