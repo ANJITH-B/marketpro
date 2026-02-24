@@ -1,9 +1,22 @@
+import { StaticImageData } from 'next/image';
 import img1 from '../../../../public/promotional-banner/promotional-banner-img1.png'
 import img2 from '../../../../public/promotional-banner/promotional-banner-img2.png'
 import img3 from '../../../../public/promotional-banner/promotional-banner-img3.png'
 import img4 from '../../../../public/promotional-banner/promotional-banner-img4.png'
 
-export const banners = [
+export interface Banner {
+    title: string;
+    subtitle: string;
+    description: string;
+    buttonText: string;
+    bgColor: string;
+    textColor: string;
+    buttonColor: string;
+    image: StaticImageData;
+    price: string;
+}
+
+export const banners: Banner[] = [
     {
         title: 'Best Deals',
         subtitle: 'Sale up to 50% OFF',

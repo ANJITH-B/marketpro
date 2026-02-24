@@ -1,9 +1,7 @@
 'use client';
 
 import { Star, ShoppingCart, Heart, Eye, Store } from 'lucide-react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { Product } from '@/utils/types';
 
 interface ProductCardProps {

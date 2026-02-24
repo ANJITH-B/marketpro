@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { banners } from './data';
+import { Banner, banners } from './data';
 import Image from 'next/image';
 
 const PromoBanners = () => {
@@ -23,7 +23,7 @@ const PromoBanners = () => {
 export default PromoBanners;
 
 
-const BannerCard = ({ banner }: { banner: any }) => {
+const BannerCard = ({ banner }: { banner: Banner }) => {
     return (
         <div
             className={`${banner.bgColor} rounded-2xl overflow-hidden group min-h-[120px] flex flex-col justify-center relative order-2 border border-gray-200`}
