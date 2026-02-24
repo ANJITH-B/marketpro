@@ -5,7 +5,6 @@ import CategoryList from "@/components/home/categories/CategoryList";
 import PromoBanners from "@/components/home/promo-bannner.tsx/PromoBanners";
 import BestDeals from "@/components/home/flash-sales/BestDeals";
 import ProductGrid from "@/components/home/ProductGrid";
-import ServiceFeatures from "@/components/home/ServiceFeatures";
 import Newsletter from "@/components/home/Newsletter";
 
 export default function Home() {
@@ -15,8 +14,12 @@ export default function Home() {
       <CategoryList />
       <PromoBanners />
       <BestDeals />
+      {/*timer deals banner*/}
       <ProductGrid />
-      <ServiceFeatures />
+      {/*Recommended for you */}
+      {/*timer deals banner*/}
+      {/*hot deals today*/}
+      {/*Top selling Top*/}
       <Newsletter />
     </main>
   );
